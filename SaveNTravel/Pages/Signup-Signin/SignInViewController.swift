@@ -9,13 +9,26 @@ struct SignInViewController: View {
 
     var body: some View {
         VStack {
+                VStack(spacing: 10) {
+                   
+                    
+                    Text("Happy to see you there again!")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        
+                        .fixedSize(horizontal: true, vertical: true) // Ensures the text wraps if needed
+                }
+                .padding(.bottom, 50)
+            
+            
+            
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding(30)
 
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding(30)
 
             Button(action: signIn) {
                 Text("Sign In")
@@ -25,7 +38,7 @@ struct SignInViewController: View {
                     .background(Color.green)
                     .cornerRadius(10)
             }
-            .padding()
+            .padding(.top, 30)
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Errore"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }

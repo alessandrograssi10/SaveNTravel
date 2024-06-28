@@ -9,6 +9,7 @@ target 'SaveNTravel' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
+  pod 'PhoneNumberKit', '~> 3.7'
 
   target 'SaveNTravelTests' do
     inherit! :search_paths

@@ -286,6 +286,7 @@
 			mainGroup = 36D8331F2C2DF5380035D0B3;
 			packageReferences = (
 				36D833572C2DF68E0035D0B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				36BA14A22C2F49790018673D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			productRefGroup = 36D833292C2DF5380035D0B3 /* Products */;
 			projectDirPath = "";
@@ -751,6 +752,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		36BA14A22C2F49790018673D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.7.11;
+			};
+		};
 		36D833572C2DF68E0035D0B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
