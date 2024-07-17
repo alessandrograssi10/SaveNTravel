@@ -4,7 +4,8 @@ import FirebaseFirestore
 struct TripView: View {
     var trip: Trip
     var isLarge: Bool = false
-    
+    @State private var isShowingShareSheet = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ZStack(alignment: .topLeading) { // Align content to the top leading corner
@@ -35,12 +36,16 @@ struct TripView: View {
                 Spacer()
                 
                 Button(action: {
-                    // Add action for sharing code here
+                    self.isShowingShareSheet = true
                 }) {
                     Image(systemName: "square.and.arrow.up")
                         .foregroundColor(.white)
                         .padding()
                 }
+                .sheet(isPresented: $isShowingShareSheet) {
+                    ActivityView(activityItems: [trip.code])
+                }
+
             }
             .frame(height: 50)
             .background(Color.black)
@@ -50,6 +55,20 @@ struct TripView: View {
         .padding(.horizontal)
     }
 }
+struct ActivityView: UIViewControllerRepresentable {
+    let activityItems: [Any] // Items to be shared
+    let applicationActivities: [UIActivity]? = nil // Optional custom activities
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityView>) -> UIActivityViewController {
+        // Create and return a UIActivityViewController with the provided activity items
+        return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityView>) {
+        // No update needed
+    }
+}
+
 
 struct TripView_Previews: PreviewProvider {
     static var previews: some View {

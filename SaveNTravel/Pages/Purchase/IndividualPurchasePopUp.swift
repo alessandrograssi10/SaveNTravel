@@ -122,7 +122,7 @@ struct IndividualPurchasePopup: View {
 
                 Button(action: {
                                     if let userID = userID, let userEmail = userEmail, let trip = selectedTrip, let category = selectedCategory, let price = Double(amount) {
-                                        let newPurchase = Purchase(name: nomeSpesa, category: category.name, price: price, sharedWith: [], timestamp: Timestamp(date: Date()), tripName: trip.title, authoredBy: userEmail)
+                                        let newPurchase = Purchase(name: nomeSpesa, category: category.name, price: price, sharedWith: [], timestamp: Timestamp(date: Date()), tripName: trip.title, authoredBy: userEmail, type: "Individual")
                                         purchaseViewModel.addPurchase(newPurchase, userID: userID, tripCode: trip.code)
                                         showPopup = false
                                     }

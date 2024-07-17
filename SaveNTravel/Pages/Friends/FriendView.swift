@@ -12,6 +12,7 @@ struct Split: Identifiable {
     var sharedWith: [String]
     var timestamp: Timestamp
     var tripCode: String
+    var tripName: String
 }
 
 // Definizione della view FriendView
@@ -57,9 +58,25 @@ struct FriendView: View {
                     
                     // Calcolo del totale (crediti - debiti)
                     let netTotal = totalCredits - totalDebits
-                    Text("Net Total: \(netTotal)")
-                        .font(.headline)
-                        .padding()
+                    HStack {
+                        Text("Net Total: \(netTotal)")
+                            .font(.headline)
+                            .padding()
+                        
+                        if netTotal > 0 {
+                            Button(action: requestAllCredits) {
+                                Text("Request all credits")
+                                    .foregroundColor(.blue)
+                            }
+                            .padding()
+                        } else if netTotal < 0 {
+                            Button(action: payAllDebts) {
+                                Text("Pay all debts")
+                                    .foregroundColor(.red)
+                            }
+                            .padding()
+                        }
+                    }
                 }
             }
             .padding()
@@ -101,11 +118,12 @@ struct FriendView: View {
                           let price = data["price"] as? Int,
                           let sharedWith = data["sharedWith"] as? [String],
                           let timestamp = data["timestamp"] as? Timestamp,
-                          let tripCode = data["tripCode"] as? String else {
+                          let tripCode = data["tripCode"] as? String,
+                          let tripName = data["tripName"] as? String else {
                         return nil
                     }
 
-                    return Split(id: document.documentID, authoredBy: authoredBy, category: category, name: name, price: price, sharedWith: sharedWith, timestamp: timestamp, tripCode: tripCode)
+                    return Split(id: document.documentID, authoredBy: authoredBy, category: category, name: name, price: price, sharedWith: sharedWith, timestamp: timestamp, tripCode: tripCode, tripName: tripName)
                 }
 
                 self.fetchSharedWithSplits(splits: splits)
@@ -139,11 +157,12 @@ struct FriendView: View {
                           let price = data["price"] as? Int,
                           let sharedWith = data["sharedWith"] as? [String],
                           let timestamp = data["timestamp"] as? Timestamp,
-                          let tripCode = data["tripCode"] as? String else {
+                          let tripCode = data["tripCode"] as? String,
+                          let tripName = data["tripName"] as? String else {
                         return nil
                     }
 
-                    return Split(id: document.documentID, authoredBy: authoredBy, category: category, name: name, price: price, sharedWith: sharedWith, timestamp: timestamp, tripCode: tripCode)
+                    return Split(id: document.documentID, authoredBy: authoredBy, category: category, name: name, price: price, sharedWith: sharedWith, timestamp: timestamp, tripCode: tripCode, tripName: tripName)
                 }
 
                 var allSplits = splits
@@ -177,6 +196,18 @@ struct FriendView: View {
         self.splits = splits
         print("Total Credits: \(totalCredits), Total Debits: \(totalDebits)")
     }
+    
+    // Metodo per richiedere tutti i crediti
+    private func requestAllCredits() {
+        print("Requesting all credits from \(friend.email)")
+        // Implementa l'azione per richiedere tutti i crediti
+    }
+    
+    // Metodo per pagare tutti i debiti
+    private func payAllDebts() {
+        print("Paying all debts to \(friend.email)")
+        // Implementa l'azione per pagare tutti i debiti
+    }
 }
 
 struct SplitRowView: View {
@@ -201,7 +232,7 @@ struct SplitRowView: View {
                 
                 Spacer()
                 
-                Text("Trip Code: \(split.tripCode)")
+                Text("In Trip: \(split.tripName)")
                     .font(.body)
                     .foregroundColor(.secondary)
             }

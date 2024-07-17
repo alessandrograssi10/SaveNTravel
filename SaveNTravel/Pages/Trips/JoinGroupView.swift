@@ -21,6 +21,11 @@ struct JoinGroupView: View {
     let popularCategories = ["Transport", "Food", "Accommodation", "Activities", "Miscellaneous"]
     let db = Firestore.firestore()
     
+    var othersBudget: Double {
+        let totalAllocated = categories.reduce(0) { $0 + $1.budget }
+        return (Double(totalBudget) ?? 0) - totalAllocated
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -52,6 +57,17 @@ struct JoinGroupView: View {
                             }
                         }
                         
+                        if othersBudget > 0 {
+                            HStack {
+                                Text("Others")
+                                Spacer()
+                                Text("\(othersBudget, specifier: "%.2f")")
+                                Circle()
+                                    .fill(Color.purple)
+                                    .frame(width: 20, height: 20)
+                            }
+                        }
+                        
                         Button(action: {
                             showCategorySheet.toggle()
                         }) {
@@ -75,11 +91,9 @@ struct JoinGroupView: View {
                             .padding()
                     }
                 } else {
-                    Section(header: Text("Join Group")) {
-                        TextField("Enter Group Code", text: $groupCode)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                    
+                    TextField("Enter Group Code", text: $groupCode)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.bottom, 5)
                     Button(action: {
                         verifyGroup()
                     }) {
@@ -101,14 +115,7 @@ struct JoinGroupView: View {
                         .font(.headline)
                         .padding()
                     
-                    Picker("Select Category", selection: $selectedCategory) {
-                        ForEach(popularCategories, id: \.self) { category in
-                            Text(category).tag(category as String?)
-                        }
-                        Text("Custom").tag("Custom" as String?)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding()
+                    ChipsMenu(selectedCategory: $selectedCategory, popularCategories: popularCategories, newCategory: $newCategory)
                     
                     if selectedCategory == "Custom" {
                         TextField("Category Name", text: $newCategory)
@@ -154,7 +161,7 @@ struct JoinGroupView: View {
             return
         }
         
-        db.collection("trips").document(groupCode).getDocument { (document, error) in
+        db.collection("trips").document(groupCode.uppercased()).getDocument { (document, error) in
             if let document = document, document.exists {
                 // Check if the user is already a member
                 let users = document.get("users") as? [String] ?? []
@@ -204,14 +211,24 @@ struct JoinGroupView: View {
             }
             
             // Save trip details under user's document
-            let tripDetailData: [String: Any] = [
+            var tripDetailData: [String: Any] = [
                 "totalBudget": Double(totalBudget) ?? 0.0,
                 "categories": categories.map { [
                     "name": $0.name,
-                    "color": $0.color.description,
+                    "color": hexString(from: $0.color),
                     "budget": $0.budget
                 ]}
             ]
+            
+            if var tripCategories = tripDetailData["categories"] as? [[String: Any]], othersBudget > 0 {
+                let othersCategory: [String: Any] = [
+                    "name": "Others",
+                    "color": hexString(from: Color.purple),
+                    "budget": othersBudget
+                ]
+                tripCategories.append(othersCategory)
+                tripDetailData["categories"] = tripCategories
+            }
             
             db.collection("users").document(user.uid).collection("trips").document(groupCode).setData(tripDetailData) { error in
                 if let error = error {
@@ -265,6 +282,21 @@ struct JoinGroupView: View {
         selectedCategory = nil
         showCategorySheet = false
     }
+}
+
+
+private func hexString(from color: Color) -> String {
+    let uiColor = UIColor(color)
+    var r: CGFloat = 0
+    var g: CGFloat = 0
+    var b: CGFloat = 0
+    var a: CGFloat = 0
+    uiColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+    return String(format: "#%02lX%02lX%02lX%02lX",
+                  lround(Double(r * 255)),
+                  lround(Double(g * 255)),
+                  lround(Double(b * 255)),
+                  lround(Double(a * 255)))
 }
 
 extension UIColor {

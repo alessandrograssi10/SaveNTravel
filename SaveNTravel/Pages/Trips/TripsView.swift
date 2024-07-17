@@ -6,6 +6,8 @@ struct TripsView: View {
     @State private var showAddTripView = false
     @State private var showJoinGroupView = false
     @State private var userTrips: [Trip] = []
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     @State private var navigateToTrip: String? = nil
     @State private var userID: String? = nil
     
@@ -54,10 +56,12 @@ struct TripsView: View {
                     }
                 } label: {
                     HStack {
+                        //Text("Add trip")
                         Image(systemName: "plus")
                             .imageScale(.large)
                     }
                 }
+
             )
             .fullScreenCover(isPresented: $showAddTripView, onDismiss: {
                 fetchUserTrips()
@@ -89,6 +93,9 @@ struct TripsView: View {
                 }
                 .transition(.move(edge: .bottom))
             }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            }
         }
         .onAppear {
             fetchUserTrips()
@@ -100,7 +107,9 @@ struct TripsView: View {
     
     private func fetchUserTrips() {
         guard let user = Auth.auth().currentUser else {
-            print("User not logged in.")
+            alertMessage = "User not logged in."
+            showAlert = true
+            print(alertMessage)
             return
         }
         
@@ -113,10 +122,14 @@ struct TripsView: View {
                     print("Fetched trip codes: \(tripCodes)")
                     fetchTrips(tripCodes: tripCodes) // Fetch trip details for these trip codes
                 } else {
-                    print("No trips found for user.")
+                    alertMessage = "No trips found for user."
+                    showAlert = true
+                    print(alertMessage)
                 }
             } else {
-                print("Error fetching user data: \(error?.localizedDescription ?? "Unknown error")")
+                alertMessage = "Error fetching user data: \(error?.localizedDescription ?? "Unknown error")"
+                showAlert = true
+                print(alertMessage)
             }
         }
     }
@@ -131,6 +144,7 @@ struct TripsView: View {
             db.collection("trips").document(tripCode).getDocument { (tripDocument, error) in
                 if let tripDocument = tripDocument, tripDocument.exists, let tripData = tripDocument.data() {
                     if let destination = tripData["destination"] as? String {
+                        // Fetch detailed data from user's trip collection
                         self.db.collection("users").document(self.userID!).collection("trips").document(tripCode).getDocument { (document, error) in
                             if let document = document, document.exists {
                                 let data = document.data()
@@ -151,7 +165,9 @@ struct TripsView: View {
                                 print("Fetched trip: \(trip)")
                                 dispatchGroup.leave()
                             } else {
-                                print("Error fetching trip data for code \(tripCode): \(error?.localizedDescription ?? "Unknown error")")
+                                self.alertMessage = "Error fetching trip data for code \(tripCode): \(error?.localizedDescription ?? "Unknown error")"
+                                self.showAlert = true
+                                print(self.alertMessage)
                                 dispatchGroup.leave()
                             }
                         }
@@ -178,4 +194,3 @@ struct TripsView_Previews: PreviewProvider {
         TripsView()
     }
 }
-

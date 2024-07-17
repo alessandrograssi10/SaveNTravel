@@ -4,74 +4,119 @@ import FirebaseAuth
 
 struct PurchasesView: View {
     @EnvironmentObject var purchaseViewModel: PurchaseViewModel
-    //var userID: String
-    @State private var purchases: [Purchase] = []    //var tripCode: String
-    
-    
+    @State private var purchases: [Purchase] = []
+
     var body: some View {
         NavigationView {
             List {
-                ForEach(purchases.sorted(by: { $0.timestamp.seconds > $1.timestamp.seconds })) { purchase in
-                    VStack(alignment: .leading) {
-                        Text("\(purchase.name)")
-                            .font(.headline)
-                        Text("\(purchase.category) - $\(String(format: "%.2f", purchase.price))")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
+                ForEach(groupedPurchases.keys.sorted(), id: \.self) { tripName in
+                    Section(header: Text(tripName)) {
+                        ForEach(groupedPurchases[tripName] ?? []) { purchase in
+                            if purchase.type == "Split" {
+                                NavigationLink(destination: PurchaseDetailView(purchase: purchase)) {
+                                    PurchaseRow(purchase: purchase)
+                                }
+                            } else {
+                                PurchaseRow(purchase: purchase)
+                            }
+                        }
                     }
                 }
             }
+            .listStyle(InsetGroupedListStyle())
             .navigationTitle("Purchases")
             .onAppear {
                 fetchPurchases()
             }
         }
     }
-    
-    
-    
-    
+
+    private var groupedPurchases: [String: [Purchase]] {
+        Dictionary(grouping: purchases, by: { $0.tripName ?? "Unknown" })
+    }
+
     private func fetchPurchases() {
         guard let userID = Auth.auth().currentUser?.uid else {
-            print("Utente non ha effettuato l'accesso")
+            print("User not logged in")
             return
         }
-        
+
         let db = Firestore.firestore()
-        
-        // Esempio di query per recuperare gli acquisti dell'utente
+
         db.collection("users").document(userID).collection("trips").getDocuments { (querySnapshot, error) in
             if let error = error {
-                print("Errore nel recupero degli acquisti: \(error.localizedDescription)")
+                print("Error fetching trips: \(error.localizedDescription)")
                 return
             }
-            
+
             var purchasesList: [Purchase] = []
-            
+
+            let dispatchGroup = DispatchGroup()
+
             for document in querySnapshot!.documents {
                 let tripCode = document.documentID
-                
-                // Recupera gli acquisti per ogni tripCode
+
+                dispatchGroup.enter()
+
                 db.collection("users").document(userID).collection("trips").document(tripCode).collection("purchases").getDocuments { (querySnapshot, error) in
                     if let error = error {
-                        print("Errore nel recupero degli acquisti per il trip \(tripCode): \(error.localizedDescription)")
+                        print("Error fetching purchases for trip \(tripCode): \(error.localizedDescription)")
+                        dispatchGroup.leave()
                         return
                     }
-                    
+
                     for document in querySnapshot!.documents {
                         do {
-                            // Prova a decodificare il documento in un oggetto Purchase
-                            let purchase = try document.data(as: Purchase.self)
+                            var purchase = try document.data(as: Purchase.self)
                             purchasesList.append(purchase)
                         } catch {
-                            print("Errore durante la decodifica dell'acquisto: \(error.localizedDescription)")
+                            print("Error decoding purchase: \(error.localizedDescription)")
                         }
                     }
-                    
-                    
-                    self.purchases = purchasesList.sorted(by: { $0.timestamp.seconds > $1.timestamp.seconds })
+
+                    dispatchGroup.leave()
+                }
+            }
+
+            dispatchGroup.notify(queue: .main) {
+                self.purchases = purchasesList.sorted(by: { $0.timestamp.seconds > $1.timestamp.seconds })
+            }
+        }
+    }
+}
+
+struct PurchaseRow: View {
+    var purchase: Purchase
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(purchase.name)
+                .font(.headline)
+            Text("\(purchase.category) - $\(String(format: "%.2f", purchase.price)) - \(purchase.type)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+        }
+        .padding(.vertical, 8)
+    }
+}
+
+struct PurchaseDetailView: View {
+    var purchase: Purchase
+
+    var body: some View {
+        List {
+            Section(header: Text("Shared With")) {
+                if !purchase.sharedWith.isEmpty {
+                    ForEach(purchase.sharedWith, id: \.self) { email in
+                        Text(email)
+                    }
+                } else {
+                    Text("No shared emails.")
+                        .foregroundColor(.gray)
                 }
             }
         }
+        .listStyle(InsetGroupedListStyle())
+        .navigationTitle(purchase.name)
     }
 }
