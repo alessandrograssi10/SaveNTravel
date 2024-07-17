@@ -5,9 +5,7 @@ import FirebaseAuth
 struct SplitPurchasePopup: View {
     @Binding var showPopup: Bool
     @State private var nomeSpesa: String = ""
-    @State private var category: String = ""
     @State private var amount: String = ""
-    @State private var categories: [Category] = []
     @State private var friends: [User] = []
     @State private var selectedFriends: Set<String> = []
     @State private var userTrips: [Trip] = []
@@ -113,90 +111,100 @@ struct SplitPurchasePopup: View {
                         .padding(.leading)
                         .padding(.top)
                     
-                    if let _ = selectedTrip?.code {
-                        List(friends, id: \.email) { friend in
-                            MultipleSelectionRow(title: friend.name, isSelected: selectedFriends.contains(friend.email)) {
-                                if selectedFriends.contains(friend.email) {
-                                    selectedFriends.remove(friend.email)
-                                } else {
-                                    selectedFriends.insert(friend.email)
+                    if let selectedTrip = selectedTrip {
+                        if !friends.isEmpty {
+                            List(friends, id: \.email) { friend in
+                                MultipleSelectionRow(title: friend.name, isSelected: selectedFriends.contains(friend.email)) {
+                                    if selectedFriends.contains(friend.email) {
+                                        selectedFriends.remove(friend.email)
+                                    } else {
+                                        selectedFriends.insert(friend.email)
+                                    }
                                 }
                             }
+                            .frame(height: 150)
+                            .padding(.horizontal)
+                        } else {
+                            Text("No friends available for split in this trip")
+                                .foregroundColor(.gray)
+                                .padding(.horizontal)
                         }
-                        .frame(height: 150)
                     } else {
-                        Text(" ")
-                        Text("You must select a trip")
-                            .padding(.leading)
-                            .font(.system(size: 18))
+                        Text("Please select a trip first")
+                            .foregroundColor(.gray)
+                            .padding(.horizontal)
                     }
                     
-                    Text("INSERT AMOUNT")
-                        .font(.caption)
-                        .bold()
-                        .padding(.leading)
-                        .padding(.top)
-                    
-                    TextField("Enter amount", text: $amount)
-                        .keyboardType(.decimalPad)
-                        .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(10)
-                        .padding(.horizontal)
+                    if !selectedFriends.isEmpty {
+                        Text("INSERT AMOUNT")
+                            .font(.caption)
+                            .bold()
+                            .padding(.leading)
+                            .padding(.top)
+                        
+                        TextField("Enter amount", text: $amount)
+                            .keyboardType(.decimalPad)
+                            .padding()
+                            .background(Color(UIColor.systemGray6))
+                            .cornerRadius(10)
+                            .padding(.horizontal)
+                    }
                     
                     Spacer()
                     
-                    Button(action: {
-                        guard let userID = userID,
-                              let userEmail = userEmail,
-                              let trip = selectedTrip,
-                              let category = selectedCategory,
-                              let price = Double(amount),
-                              !nomeSpesa.isEmpty else {
-                            alertMessage = "Please fill in all fields."
-                            showAlert = true
-                            return
-                        }
-                        
-                        let totalParticipants = selectedFriends.count + 1
-                        let splitAmount = price / Double(totalParticipants)
-                        let newPurchase = Purchase(
-                            name: nomeSpesa,
-                            category: category.name,
-                            price: splitAmount,
-                            sharedWith: Array(selectedFriends),
-                            timestamp: Timestamp(date: Date()),
-                            tripName: trip.title,
-                            authoredBy: userEmail,
-                            type: "Split"
-                        )
-                        
-                        purchaseViewModel.addPurchase(newPurchase, userID: userID, tripCode: trip.code)
-                        addSplit(newPurchase: newPurchase, userID: userID, tripCode: trip.code)
-                        showPopup = false
-                    }) {
-                        Text("Done")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
-                    .padding()
-                                    }
-                                    .onAppear {
-                                        fetchUserEmail()
-                                        fetchUserTrips()
-                                        
-                                    }
-                                    .alert(isPresented: $showAlert) {
-                                        Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-                                    }
-                                }
+                    if !selectedFriends.isEmpty {
+                        Button(action: {
+                            guard let userID = userID,
+                                  let userEmail = userEmail,
+                                  let trip = selectedTrip,
+                                  let category = selectedCategory,
+                                  let price = Double(amount),
+                                  !nomeSpesa.isEmpty else {
+                                alertMessage = "Please fill in all fields."
+                                showAlert = true
+                                return
                             }
+                            
+                            let totalParticipants = selectedFriends.count + 1
+                            let splitAmount = price / Double(totalParticipants)
+                            let newPurchase = Purchase(
+                                name: nomeSpesa,
+                                category: category.name,
+                                price: splitAmount,
+                                sharedWith: Array(selectedFriends),
+                                timestamp: Timestamp(date: Date()),
+                                tripName: trip.title,
+                                authoredBy: userEmail,
+                                type: "Split"
+                            )
+                            
+                            purchaseViewModel.addPurchase(newPurchase, userID: userID, tripCode: trip.code)
+                            addSplit(newPurchase: newPurchase, userID: userID, tripCode: trip.code)
+                            showPopup = false
+                        }) {
+                            Text("Done")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                        }
+                        .padding()
+                    }
+                }
+                .padding()
+                .onAppear {
+                    fetchUserEmail()
+                    fetchUserTrips()
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                }
+            }
+        }
     }
-
+    
     struct RadioButtonField: View {
         let id: String
         let label: String
@@ -387,6 +395,8 @@ struct SplitPurchasePopup: View {
 
             let participantEmails = data["users"] as? [String] ?? []
             let filteredParticipantEmails = participantEmails.filter { $0 != user.email }
+            print("Filtered participant emails: \(filteredParticipantEmails)") // Debug log
+            
             fetchUserDetails(for: filteredParticipantEmails)
         }
     }
@@ -411,17 +421,143 @@ struct SplitPurchasePopup: View {
                 }
                 
                 if let user = User(document: document) {
-                    fetchedFriends.append(user)
+                    print("User found: \(user)") // Debug log
+                    
+                    // Check if friend request is accepted and user is participant of the trip
+                    self.checkFriendRequestExists(from: user.email, to: Auth.auth().currentUser!.email!) { result in
+                        switch result {
+                        case .success(let status):
+                            if status == "already friend" {
+                                fetchedFriends.append(user)
+                                print("Friend added: \(user)") // Debug log
+                            }
+                        case .failure(let error):
+                            print("Error checking friend request for \(user.email): \(error.localizedDescription)")
+                        }
+                        dispatchGroup.leave()
+                    }
+                } else {
+                    dispatchGroup.leave()
                 }
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            // Fetch participants for the trip
+            self.fetchParticipants(for: emails, friends: fetchedFriends)
+        }
+    }
+
+    private func fetchParticipants(for emails: [String], friends: [User]) {
+        let dispatchGroup = DispatchGroup()
+        var participants: [Participant] = []
+
+        // Debug: Print friend emails
+        let friendEmails = friends.map { $0.email }
+        print("Friend emails: \(friendEmails)")
+
+        for email in emails {
+            dispatchGroup.enter()
+            db.collection("users").whereField("email", isEqualTo: email).getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error fetching participant details for email \(email): \(error.localizedDescription)")
+                    dispatchGroup.leave()
+                    return
+                }
+                
+                guard let documents = querySnapshot?.documents, let document = documents.first else {
+                    print("No participant document found for email \(email)")
+                    dispatchGroup.leave()
+                    return
+                }
+                
+                let data = document.data()
+                let email = document["email"] as? String ?? ""
+                let name = data["name"] as? String ?? "Unknown"
+                let surname = data["surname"] as? String ?? "Unknown"
+                
+                let participant = Participant(email: email, name: name, surname: surname)
+                participants.append(participant)
+                print("Participant added: \(participant)") // Debug log
+                
                 dispatchGroup.leave()
             }
         }
 
         dispatchGroup.notify(queue: .main) {
-            self.friends = fetchedFriends
+            // Debug: Print participant emails
+            let participantEmails = participants.map { $0.email }
+            print("Participant emails: \(participantEmails)")
+
+            // Filter friends who are also participants
+            let commonEmails = Set(friendEmails).intersection(Set(participantEmails))
+            let friendsInTrip = friends.filter { commonEmails.contains($0.email) }
+            
+            self.friends = friendsInTrip
             print("Fetched friends: \(self.friends)") // Debug log
         }
     }
+
+    func checkFriendRequestExists(from currentUserEmail: String, to userEmail: String, completion: @escaping (Result<String, Error>) -> Void) {
+        // Check if there is a friend request where currentUserEmail is in "from" and userEmail is in "to"
+        db.collection("friendRequests")
+            .whereField("from", isEqualTo: currentUserEmail)
+            .whereField("to", isEqualTo: userEmail)
+            .getDocuments { querySnapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let documents = querySnapshot?.documents else {
+                    self.checkReverseFriendRequestExists(from: currentUserEmail, to: userEmail, completion: completion)
+                    return
+                }
+                
+                if documents.isEmpty {
+                    self.checkReverseFriendRequestExists(from: currentUserEmail, to: userEmail, completion: completion)
+                } else if let document = documents.first, let status = document.data()["status"] as? String {
+                    if status == "accepted" {
+                        completion(.success("already friend")) // Già amici
+                    } else {
+                        self.checkReverseFriendRequestExists(from: currentUserEmail, to: userEmail, completion: completion)
+                    }
+                } else {
+                    self.checkReverseFriendRequestExists(from: currentUserEmail, to: userEmail, completion: completion)
+                }
+            }
+    }
+
+    private func checkReverseFriendRequestExists(from currentUserEmail: String, to userEmail: String, completion: @escaping (Result<String, Error>) -> Void) {
+        // Check if there is a friend request where userEmail is in "from" and currentUserEmail is in "to"
+        db.collection("friendRequests")
+            .whereField("from", isEqualTo: userEmail)
+            .whereField("to", isEqualTo: currentUserEmail)
+            .getDocuments { querySnapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let documents = querySnapshot?.documents else {
+                    completion(.success("add")) // Nessuna richiesta di amicizia trovata
+                    return
+                }
+                
+                if documents.isEmpty {
+                    completion(.success("add")) // Nessuna richiesta di amicizia trovata
+                } else if let document = documents.first, let status = document.data()["status"] as? String {
+                    if status == "accepted" {
+                        completion(.success("already friend")) // Già amici
+                    } else {
+                        completion(.success("add")) // Nessuna richiesta di amicizia trovata
+                    }
+                } else {
+                    completion(.success("add")) // Nessuna richiesta di amicizia trovata
+                }
+            }
+    }
+
 
     private func addSplit(newPurchase: Purchase, userID: String, tripCode: String) {
         let splitData: [String: Any] = [
