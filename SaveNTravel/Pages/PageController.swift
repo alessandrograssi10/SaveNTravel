@@ -92,7 +92,7 @@ struct PageController: View {
                             .padding()
                             .foregroundColor(selectedTab == 3 ? .orange : .black)
                         
-                            .background(Color.green)
+                          
                             .cornerRadius(50)
                     }
                 }

@@ -12,10 +12,8 @@ struct Split: Identifiable {
     var sharedWith: [String]
     var timestamp: Timestamp
     var tripCode: String
-    var tripName: String
 }
 
-// Definizione della view FriendView
 struct FriendView: View {
     let friend: Friend
     let onAccept: () -> Void
@@ -23,6 +21,9 @@ struct FriendView: View {
     @State private var splits: [Split] = []
     @State private var totalCredits = 0
     @State private var totalDebits = 0
+    @State private var showingPaymentOptions = false
+    @State private var selectedPaymentOption = 0
+    @State private var hasTransactions = true // Aggiunto stato per verificare se ci sono transazioni
     
     private let db = Firestore.firestore()
     
@@ -33,25 +34,52 @@ struct FriendView: View {
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
-                Text("\(friend.name) \(friend.surname)")
-                    .font(.subheadline)
-                
-                if friend.pending {
-                    if friend.requestType == .sent {
-                        Text("Request sent")
-                            .foregroundColor(.orange)
-                            .font(.footnote)
-                    } else if friend.requestType == .received {
-                        Button(action: onAccept) {
-                            Text("Accept Friend Request")
-                                .foregroundColor(.blue)
+                HStack {
+                    Text("\(friend.name) \(friend.surname)")
+                        .font(.subheadline)
+                    
+                    Spacer()
+                    
+                    if friend.pending {
+                        if friend.requestType == .sent {
+                            Text("Request sent")
+                                .foregroundColor(.orange)
                                 .font(.footnote)
+                        } else if friend.requestType == .received {
+                            Button(action: onAccept) {
+                                Text("Accept Friend Request")
+                                    .foregroundColor(.blue)
+                                    .font(.footnote)
+                            }
                         }
                     }
+                }
+                .padding(.horizontal)
+                
+                // Mostra messaggi informativi se non ci sono transazioni
+                if splits.isEmpty {
+                    VStack {
+                        Text("No transactions yet")
+                            .font(.title)
+                            .foregroundColor(.secondary)
+                            .padding(.vertical, 20)
+                        
+                        Text("Start splitting expenses with \(friend.email)!")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 20)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    // Amicizia stabilita
+                    // Mostra "transactions with email" se specificato
+                    if !friend.email.isEmpty {
+                        Text("Transactions with \(friend.email)")
+                            .font(.headline)
+                            .padding(.horizontal)
+                    }
+                    
                     List(splits) { split in
-                        SplitRowView(split: split, currentUserEmail: currentUserEmail, friendEmail: friend.email)
+                        SplitRowView(split: split, currentUserEmail: currentUserEmail, friendEmail: friend.email, showPaymentOptions: $showingPaymentOptions)
                     }
                     .listStyle(InsetGroupedListStyle())
                     .padding(.top, 10)
@@ -63,23 +91,35 @@ struct FriendView: View {
                             .font(.headline)
                             .padding()
                         
-                        if netTotal > 0 {
-                            Button(action: requestAllCredits) {
-                                Text("Request all credits")
-                                    .foregroundColor(.blue)
-                            }
-                            .padding()
-                        } else if netTotal < 0 {
-                            Button(action: payAllDebts) {
+                        Spacer()
+                        
+                        if netTotal < 0 {
+                            Button(action: {
+                                // Azione per pagare tutti i debiti
+                            }) {
                                 Text("Pay all debts")
                                     .foregroundColor(.red)
+                                    .font(.footnote)
                             }
-                            .padding()
+                            .padding(.trailing, 10)
+                        } else if netTotal > 0 {
+                            Button(action: {
+                                // Azione per richiedere tutti i pagamenti
+                            }) {
+                                Text("Request all payments")
+                                    .foregroundColor(.blue)
+                                    .font(.footnote)
+                            }
+                            .padding(.trailing, 10)
                         }
                     }
                 }
             }
-            .padding()
+            .padding(.vertical)
+            .background(Color(UIColor.systemBackground))
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .padding(.horizontal)
             .navigationBarTitle("Friend Transactions", displayMode: .inline)
         }
         .onAppear {
@@ -103,6 +143,7 @@ struct FriendView: View {
                 
                 guard let documents = querySnapshot?.documents else {
                     print("No documents found")
+                    self.hasTransactions = false // Imposta hasTransactions a false se non ci sono documenti
                     return
                 }
                 
@@ -118,12 +159,11 @@ struct FriendView: View {
                           let price = data["price"] as? Int,
                           let sharedWith = data["sharedWith"] as? [String],
                           let timestamp = data["timestamp"] as? Timestamp,
-                          let tripCode = data["tripCode"] as? String,
-                          let tripName = data["tripName"] as? String else {
+                          let tripCode = data["tripCode"] as? String else {
                         return nil
                     }
 
-                    return Split(id: document.documentID, authoredBy: authoredBy, category: category, name: name, price: price, sharedWith: sharedWith, timestamp: timestamp, tripCode: tripCode, tripName: tripName)
+                    return Split(id: document.documentID, authoredBy: authoredBy, category: category, name: name, price: price, sharedWith: sharedWith, timestamp: timestamp, tripCode: tripCode)
                 }
 
                 self.fetchSharedWithSplits(splits: splits)
@@ -157,12 +197,11 @@ struct FriendView: View {
                           let price = data["price"] as? Int,
                           let sharedWith = data["sharedWith"] as? [String],
                           let timestamp = data["timestamp"] as? Timestamp,
-                          let tripCode = data["tripCode"] as? String,
-                          let tripName = data["tripName"] as? String else {
+                          let tripCode = data["tripCode"] as? String else {
                         return nil
                     }
 
-                    return Split(id: document.documentID, authoredBy: authoredBy, category: category, name: name, price: price, sharedWith: sharedWith, timestamp: timestamp, tripCode: tripCode, tripName: tripName)
+                    return Split(id: document.documentID, authoredBy: authoredBy, category: category, name: name, price: price, sharedWith: sharedWith, timestamp: timestamp, tripCode: tripCode)
                 }
 
                 var allSplits = splits
@@ -196,24 +235,14 @@ struct FriendView: View {
         self.splits = splits
         print("Total Credits: \(totalCredits), Total Debits: \(totalDebits)")
     }
-    
-    // Metodo per richiedere tutti i crediti
-    private func requestAllCredits() {
-        print("Requesting all credits from \(friend.email)")
-        // Implementa l'azione per richiedere tutti i crediti
-    }
-    
-    // Metodo per pagare tutti i debiti
-    private func payAllDebts() {
-        print("Paying all debts to \(friend.email)")
-        // Implementa l'azione per pagare tutti i debiti
-    }
 }
 
 struct SplitRowView: View {
     let split: Split
     let currentUserEmail: String
     let friendEmail: String
+    @Binding var showPaymentOptions: Bool
+    @State private var selectedPaymentOption = 0
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -232,33 +261,50 @@ struct SplitRowView: View {
                 
                 Spacer()
                 
-                Text("In Trip: \(split.tripName)")
+                Text("Trip Code: \(split.tripCode)")
                     .font(.body)
                     .foregroundColor(.secondary)
             }
             
             HStack {
-                if split.authoredBy == currentUserEmail && split.sharedWith.contains(friendEmail) {
+                if split.authoredBy == friendEmail && split.sharedWith.contains(currentUserEmail) {
+                    Text("Debit")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                    Spacer()
+                    Button(action: {
+                        self.showPaymentOptions.toggle()
+                    }) {
+                        Text("Select Payment Option")
+                            .foregroundColor(.blue)
+                    }
+                    .actionSheet(isPresented: $showPaymentOptions) {
+                        ActionSheet(title: Text("Select Payment Option"), buttons: [
+                            .default(Text("Pay with Apple Pay")) {
+                                // Azione per pagare con Apple Pay
+                                self.selectedPaymentOption = 1
+                            },
+                            .default(Text("Pay with Cash")) {
+                                // Azione per pagare in contanti
+                                self.selectedPaymentOption = 2
+                            },
+                            .destructive(Text("Was not me")) {
+                                // Azione per segnalare che non sei stato tu
+                                self.selectedPaymentOption = 3
+                            },
+                            .cancel()
+                        ])
+                    }
+                } else if split.authoredBy == currentUserEmail && split.sharedWith.contains(friendEmail) {
                     Text("Credit")
                         .font(.caption)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.green)
                     Spacer()
                     Button(action: {
                         // Azione per richiedere il pagamento
                     }) {
                         Text("Request Payment")
                             .foregroundColor(.blue)
-                    }
-                } else if split.authoredBy == friendEmail && split.sharedWith.contains(currentUserEmail) {
-                    Text("Debit")
-                        .font(.caption)
-                        .foregroundColor(.red)
-                    Spacer()
-                    Button(action: {
-                        // Azione per pagare ora
-                    }) {
-                        Text("Pay Now")
-                            .foregroundColor(.red)
                     }
                 }
             }

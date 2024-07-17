@@ -147,24 +147,43 @@ struct SplitPurchasePopup: View {
                     Spacer()
                     
                     Button(action: {
-                                            if let userID = userID, let userEmail = userEmail, let trip = selectedTrip, let category = selectedCategory, let price = Double(amount) {
-                                                let totalParticipants = selectedFriends.count + 1
-                                                let splitAmount = price / Double(totalParticipants)
-                                                let newPurchase = Purchase(name: nomeSpesa, category: category.name, price: splitAmount, sharedWith: Array(selectedFriends), timestamp: Timestamp(date: Date()), tripName: trip.title, authoredBy: userEmail, type: "Split")
-                                                purchaseViewModel.addPurchase(newPurchase, userID: userID, tripCode: trip.code)
-                                                addSplit(newPurchase: newPurchase, userID: userID, tripCode: trip.code)
-                                                showPopup = false
-                                            }
-                                        }) {
-                                            Text("Done")
-                                                .font(.headline)
-                                                .foregroundColor(.white)
-                                                .frame(maxWidth: .infinity)
-                                                .padding()
-                                                .background(Color.blue)
-                                                .cornerRadius(10)
-                                        }
-                                        .padding()
+                        guard let userID = userID,
+                              let userEmail = userEmail,
+                              let trip = selectedTrip,
+                              let category = selectedCategory,
+                              let price = Double(amount),
+                              !nomeSpesa.isEmpty else {
+                            alertMessage = "Please fill in all fields."
+                            showAlert = true
+                            return
+                        }
+                        
+                        let totalParticipants = selectedFriends.count + 1
+                        let splitAmount = price / Double(totalParticipants)
+                        let newPurchase = Purchase(
+                            name: nomeSpesa,
+                            category: category.name,
+                            price: splitAmount,
+                            sharedWith: Array(selectedFriends),
+                            timestamp: Timestamp(date: Date()),
+                            tripName: trip.title,
+                            authoredBy: userEmail,
+                            type: "Split"
+                        )
+                        
+                        purchaseViewModel.addPurchase(newPurchase, userID: userID, tripCode: trip.code)
+                        addSplit(newPurchase: newPurchase, userID: userID, tripCode: trip.code)
+                        showPopup = false
+                    }) {
+                        Text("Done")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding()
                                     }
                                     .onAppear {
                                         fetchUserEmail()
@@ -215,6 +234,7 @@ struct SplitPurchasePopup: View {
             return
         }
         userEmail = user.email
+        print("User Email: \(userEmail ?? "No email")") // Debug log
     }
 
     private func fetchUserTrips() {
@@ -225,6 +245,7 @@ struct SplitPurchasePopup: View {
         }
 
         userID = user.uid
+        print("User ID: \(userID ?? "No userID")") // Debug log
 
         db.collection("users").document(user.uid).getDocument { (document, error) in
             if let error = error {
@@ -248,6 +269,7 @@ struct SplitPurchasePopup: View {
             }
         }
     }
+
 
     private func fetchTrips(tripCodes: [String]) {
         let dispatchGroup = DispatchGroup()
@@ -422,7 +444,7 @@ struct SplitPurchasePopup: View {
             }
         }
     }
-}
+
 
 struct MultipleSelectionRow: View {
     var title: String
@@ -448,4 +470,5 @@ struct SplitPurchasePopup_Previews: PreviewProvider {
             .environmentObject(PurchaseViewModel())
             .environmentObject(AuthViewModel())
     }
+}
 }
