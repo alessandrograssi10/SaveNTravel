@@ -1,0 +1,362 @@
+Questions:
+1. Have you ever gone on trips? If so, was it with friends or alone? When was it?
+2. What are the most challenging aspects of coordinating travel plans with a group?
+3. Can you describe a time when you had to compromise on your travel plans to accommodate the group?
+4. Do you have any problems with managing your budget for the trip for you and your friends?
+5. Do you split purchases with friends while traveling? If so, how do you do it?
+6. When you split money with friends, how long does it take to have your money back or to give them back?
+7. Do you do your accounting during the trip or do you count your expenses after the trip? 
+8. How do you budget for a trip? What steps do you take to ensure you stay within your budget?
+9. What strategies do you use to save money while traveling? Are there particular areas where you prioritize cost savings?
+10. Have you ever used any apps to tackle these issues? What was your experience?
+11. Would you be interested in a feature that allows you to exchange money directly through a mobile app? How comfortable do you feel about sharing your payment information to this app?
+12. What lessons have you learned from organizing trips with others that could be helpful for future travel?
+13. Is there anything else you would like to share about how you manage your finances during trips, experiences, pain points, or suggestions that could help in the development of our app?
+
+
+Answers:
+
+
+Interview 1
+1. I've been on several trips during my lifetime, when I was single, with friends (in Finland in 1997, in Lithuania 2 years before) and other times with my family (2019 in Egypt, 2022 in Montenegro, 2023 in Kyrgyzstan) I've had quite many business trips alone around Kazakhstan. 
+2. Finding the right time for a trip which would suit all people, buying tickets and finding suitable accommodation 
+3. When going to Kyrgyzstan with both friends and family, it took us a long time to decide on the transport we'd use and the best time. The majority chose a night flight since it was cheaper, so I had to agree.
+4. My personal travel experience helps me to find good options at cheaper prices. I use special websites, google and consult people who have traveled to other countries. 
+5. If we have common purchases, then we split them right there while buying them. We don't split personal purchases.
+6. I always tell friends beforehand that we split money right away, since we might forget about it later, and things can become complicated. 
+7. During the trip, it's more convenient. Not all receipts might be saved, and you may feel  uncomfortable writing things down, friends might get offended.
+8. Planning a trip in advance helps. I write down the main points like a visa, tickets, accommodation, food and entertainment. Then next to it I put a tick after I find suitable options, and write  approximate expenses. 
+9. I save money by renting an apartment, not in the city center probably, and cooking my own food. I choose 2 or 3 tours around the place, not many. I don't buy many souvenirs and don't take too many clothes.
+10. I mainly use Skyscanner, booking.com. So far no complaints. 
+11. That would be very convenient if currency exchange rates were not high. Of course, using this kind of application may cause a risk, but with safeguards, risks are much fewer.
+12. Always choose reliable travel providers. For example, kiwi.com offers very cheap flights but they may not return money in case of flight cancellation. However, the website can be used for choosing good travel options and then you can use more reliable providers with the same options. 
+13. You can always find the best options at cheaper prices, though it takes time. So maybe your app will offer such options.
+
+
+
+Interview 2
+1. Yes, I have gone on several trips both with friends and alone
+2. The trickiest aspect is deciding on a budget, a schedule that works for everyone, and a place that everyone is excited about
+3. No, since we've already chosen what we're going to do that day.
+4. Yes, controlling the budget may be difficult, especially when unexpected costs arise. It is essential to have a backup plan.
+5. No, everyone pays individually
+6. it depends on the person but in the same day or the end of the trip
+7. I like to complete my accounting throughout the trip. This way, I can keep track of my spending and ensure that I stay within my budget.
+8. I begin by looking at the prices of hotels, transportation, food, and entertainment. Always keep some additional money on hand in case of unexpected events.
+9. I try to eat at local restaurants rather than pricey tourist attractions and I look for affordable accommodations because you'll be spending the majority of your time exploring outside.
+10. yes like tripadvisor, booking.com
+11. Yes, however it depends on how trustworthy the app is. 
+12. Try to reserve accommodation and flights as early as possible and make well planned trip or programme
+13. to collaborate with hotels and vacation programs so that we have some deals.
+
+
+
+Interview 3
+1. Yes, I traveled both with friends and alone, my last trip was a month ago.
+2. The most challenging aspect of coordination travel plans for me is availability of all the members of the group.
+3. I have not encountered such a situation.
+4. No, I don't
+5. Yes, I keep and divide purchases in my head and also use the Revolut bank app
+6. Instantly or after couple of days
+7. More often I do it after the trip
+8. I check the prices for everything (air/train tickets, accommodation, food etc.)
+9. I use student discounts
+10. No, I don't
+11. If this application will be accepted by the app platforms such as AppStore or Google Play, i will trust it
+12. It's better to organize them with another people in person, because it will be easier to exchange the ideas or to change your plans for the trip
+13. I don't have anything to share
+
+
+
+Interview 4
+Yes, I have done both trips with friends and alone. The last trip was August 2023.
+Find suitable dates for the whole group and book in time to avoid sudden changes in costs.
+Yes, absolutely, yes. Both in terms of money and activity choices.
+Yes, we have often had to review the budget we set for the trip because we had not foreseen all possible costs before the holiday.
+Yes, I use an application called SplitWise , where the settlement of credits or debits takes place outside the application. The application helps to keep the calculations.
+It depends, I tend to try to do it as soon as possible, but not everyone is like that; therefore, it can even take two or three weeks.
+I try to keep track of the costs I am incurring starting from flights and accommodation , which I do before the trip and are the most substantial expenses. After that I try to keep a daily track.
+I start with flight + hotel and then establish a daily budget which can include visits, food and entertainment.
+I prefer to save on restaurants, choosing cheaper things for lunch and dinner.
+Yes, I used SplitWise , which is an app that helps you keep accounts that you do as a group, where whoever supports the common expense updates the payments on the application, which automatically divides by the number of participants.
+Yes, I would be interested and I would be comfortable sharing because today there are many ways to keep payments tracked and secure, so if the application were to stay within these deadlines, I would have no problems.
+Structure a pre -departure budget, monitor it during the trip, and add an important percentage of unexpected costs into the budget structure.
+Settling the accounts directly on the app and not doing it outside would be interesting, because it would guarantee the balance of payments during the holiday with simple methods, also because today not everyone uses the same applications to transfer money, so perhaps one is not registered with a type of circuit like Paypal or Revolut . It would be useful to not carry around debts or credits for weeks to have a fusion between the SplitWise and payment functions.
+ 
+Interview 5
+Yes, with friends in April.
+Definitely the budget.
+I agreed to share a bed with a friend of mine to save money.
+Sometimes yes.
+Yes, via an app.
+As long as they remember to send me the bank transfers.
+During the trip, entering them on the app.
+I check the expenses on the card daily.
+I prefer to save on everything other than food and entertainment.
+splitwise expense division .
+I would be interested and quite comfortable if it uses payment methods I trust such as PayPal and if it was certified I suppose .
+Have a lot of patience and buy the family pack shampoo once you get there so we can all use it.
+ 
+Interview  6
+Yes, with friends, this year.
+In my opinion, the division of expenses is very complicated.
+No, nothing comes to mind.
+Yes definitely.
+Joint expenses are paid in advance by one person and then at the end of the trip a calculation is made of who owes whom.
+Some day.
+During the trip.
+I set myself a daily budget and try not to exceed it. If one day I go overboard the next day I try to counterbalance .
+I try to go to sleep in cheap places.
+I used SplitWise to split expenses, it's great.
+I think I can be very useful, but I don't know if I would use it.
+Talk about the budget of common expenses first so as not to have misunderstandings later.
+ 
+Interview 7
+Yes. Both. I’m an adventurer. Last time was a month ago.
+Availabilities and inequal wealth.
+I had exams and I came later alone to join the group. Numerous lonely hours of travel but always worth it.
+Yes, depends on the trip.
+Yes. When we are more than 2, we just open a tricount (app) so we’re not lost in the counts.
+Couple of days in the best scenario. I have a friend who owes me more than 200€ from 4 years though.
+We take notes during the trip. We’re comfortable with that so no problem.
+I see how much I can take with me before and I just adapt myself with that during the trip.
+I’m not into fancy or luxury stuff so pretty easy to save money. Always start by asking locals all kind of essential info. Usually save while choosing the Airbnb/hotel or the cheapest thing in a restaurant. Sometimes I authorize myself some exception.
+Tricount, Revolut. Great tools.
+Very interested. No problem sharing my info.
+Communication and trust. Avoid surprises right on the spot.
+In my opinion, the biggest parameters to organize a trip is the size of the group and how much we know the location. Can really influence the savings.
+ 
+Interview 8
+Yes, I have been traveling with friends and the last time was two years ago.
+challenging aspects are looking for a destination that suits everyone, speaking of interests and budget. It's difficult to reserve a seat using a single payment method. It's also difficult to find a time to all meet together to make a reservation.
+Yes, I had to make compromises. Although I like going to hotels, I have had to follow my companions to other types of establishments. I also had to settle for some goals, which I didn't appreciate too much. Furthermore, we often went over budget.
+I've always encountered lots of problems: there are those who wanted to spend more and those less and for different things. Some wanted to spend more on hotels or restaurants and some wanted to spend on attractions or visits instead.
+Yes, I share the expenses when traveling. The problem is that spending is often not fair, especially when the expenses are minimal, because they are not repaid, but in the end, adding them up over time, they end up being more substantial expenses. The expenses that are made even before leaving are also complicated to manage, such as for the overnight stay, where there is always someone who has to pay a high sum of money and the money will be returned over time and sometimes a little more or less , sometimes in cash, sometimes in paper and sometimes in installments.
+Sometimes it can even take years.
+I never do them, neither during nor after.
+I start from the flight, choosing the destination. I choose the flight and destination first and from there I understand how much I want to spend on the rest, therefore hotels and life. I use platforms like SkyScanner or Booking where you can put a maximum price range.
+Personally, I prefer to save on flights, for example by traveling at night, and on hotels, preferring life, visits etc.
+Yes, I use SkyScanner and Booking to choose flights and hotels based on my budget. To split expenses, I use Revolut to transfer money. My experience with Revolut is semi-positive because not many people have it.
+Yes, absolutely. I would feel comfortable sharing my payment information.
+More compromises.
+I would like joint expenses to be split automatically and instantly.
+ 
+Interview 9
+Yes, I left and last time was with friends for New Year 2024.
+There are various challenging aspects of organizing a trip:
+-            Meet and evaluate the goal
+-            Agree on payment methods
+-            Agree on the budget
+I had to go on holiday to places I don't like. I had to spend more than my budget.
+I always want to go to hotels with a gym, while for others it is not important. I have happened to travel with those who were too wasteful or those who wanted to save too much, instead of making compromises in both cases.
+Yes, I often have to pay for common expenses and sometimes the money doesn't come back to me, either due to forgetfulness or because sometimes the expense is minimal.
+I'm still waiting for the money I lent and I don't know if it will reach me.
+I don't look at expenses, because basically I always go over budget.
+Unfortunately, I'm never the one organizing the trips, so I'm happy with other people's choices and then plan the rest of the budget based on the initial expenses.
+I prefer to save on diners and life and I prefer to spend on flights, because I don't like traveling at night and ruining the first days of the trip.
+I don't use apps.
+Yes, I would have no problem sharing my data.
+Nothing in particular, I still have difficulty dividing my budget and expenses.
+ 
+Interview 10
+- **Question 1**: Yes, I have been to many foreign countries both alone and with my friends (graduation trip, summer trips, trips with family).
+- **Question 2**: Choosing the destination and budget for the vacation.
+- **Question 3**: Choosing the destination.
+- **Question 4**: At times yes, but only before leaving.
+- **Question 5**: Shared expenses: gas, car rental, etc...
+- **Question 6**: During the trip.
+- **Question 7**: Using a budget app to track expenses.
+- **Question 8**: I try to foresee a minimum daily budget, considering unexpected events that may happen.
+- **Question 9**: I don't use saving strategies, if I'm traveling I want to fully enjoy it without counting every penny.
+- **Question 10**: No, I rely solely on bank statements 😂.
+- **Question 11**: Honestly, I never thought about it, but it could be interesting.
+- **Question 12**: Organize the trip in advance taking advantage of offers for flights and accommodation.
+- **Question 13**: A list of people who owe you money and how much they owe.
+
+Interview 11
+- **Question 1**: Yes, with friends or boyfriend, the last time was in December 2023.
+- **Question 2**: Building plans that adapt to the diverse needs of a heterogeneous group of people.
+- **Question 3**: It certainly happened more regarding things to see or places to reach.
+- **Question 4**: Normally no.
+- **Question 5**: It happened with people I had a very close relationship with, where it happened to advance money and then have the other pay for other things of a more or less similar price.
+- **Question 6**: Yes, using a shared expense app.
+- **Question 7**: Ensuring everyone agrees on the budget.
+- **Question 8**: A place to sleep, meals distributed throughout the day, in general movements, things to see, extras. To respect my budget I always try to save where possible, for example avoiding restaurants for lunches and dinners and eating street food or in pubs where you can save, taking public transport instead of taxis or rental cars.
+- **Question 9**: Food and transport.
+- **Question 10**: No, not particularly.
+- **Question 11**: Yes, it would be interesting, though I don’t feel the need.
+- **Question 12**: Certainly, strong compromises must be made.
+- **Question 13**: Not particularly.
+
+Interview 12
+- **Question 1**: Yes, with friends a year ago.
+- **Question 2**: Getting the tickets.
+- **Question 3**: Who wanted to sleep, who wanted to go out.
+- **Question 4**: No.
+- **Question 5**: No.
+- **Question 6**: Yes, managing shared expenses.
+- **Question 7**: Keeping everyone informed about expenses.
+- **Question 8**: I see how much money I have and try not to spend it.
+- **Question 9**: I try to save on food.
+- **Question 10**: Yes, I used The Fork, it was good.
+- **Question 11**: No, I am not interested and do not feel comfortable using it.
+- **Question 12**: Organization before everything.
+- **Question 13**: No.
+
+Interview 13
+- **Question 1**: Yes, with friends, in summer.
+- **Question 2**: Available budget, travel documents (if needed).
+- **Question 3**: Postponing some dates because some had work.
+- **Question 4**: Usually no, but sometimes it’s necessary to review plans.
+- **Question 5**: Yes, usually we accommodate all friends and split costs.
+- **Question 6**: During the trip, especially for meals.
+- **Question 7**: Using shared expense apps.
+- **Question 8**: Expenses for travel (plane, car,...) + accommodation.
+- **Question 9**: I look for places where the cost for accommodation is low.
+- **Question 10**: No.
+- **Question 11**: I would be willing to use it only if it’s easy to use.
+- **Question 12**: It’s increasingly difficult to organize new ones.
+- **Question 13**: Ability to modify/reduce participants at any time.
+
+Interview 14
+- **Question 1**: Yes, last time in December with friends.
+- **Question 2**: Managing everyone's finances and preferences.
+- **Question 3**: For example, in choosing restaurants, there must be consensus.
+- **Question 4**: No.
+- **Question 5**: Yes, each pays for what they consume.
+- **Question 6**: During the trip, especially for accommodations.
+- **Question 7**: Using a budget tracker.
+- **Question 8**: I set a budget only for flight and accommodation.
+- **Question 9**: I look for offers for flights and accommodation from various providers.
+- **Question 10**: Yes, very positive.
+- **Question 11**: No, there are already many.
+- **Question 12**: Organize well before departure.
+- **Question 13**: Suggest restaurants, destinations, attractions, etc.
+
+Interview 15
+- **Question 1**: Yes, once a year, with friends.
+- **Question 2**: Coordinate dates that suit everyone.
+- **Question 3**: Deciding on activities to do and places to visit.
+- **Question 4**: No, but it sometimes happens before the trip.
+- **Question 5**: Yes, we usually share costs for common expenses.
+- **Question 6**: During the trip, especially for shared activities.
+- **Question 7**: Keeping track of all expenses.
+- **Question 8**: I establish a daily budget and try to stick to it.
+- **Question 9**: I look for cheaper options for food and activities.
+- **Question 10**: No.
+- **Question 11**: Yes, it could be useful.
+- **Question 12**: Plan the trip well in advance.
+- **Question 13**: No, not particularly.
+
+Interview 16
+- **Question 1**: Yes, usually with family or friends.
+- **Question 2**: Deciding the destination and coordinating with everyone’s availability.
+- **Question 3**: Choosing places to visit that interest everyone.
+- **Question 4**: No, but sometimes it’s necessary to make adjustments.
+- **Question 5**: Yes, we usually keep track of shared expenses.
+- **Question 6**: During the trip, especially for meals and accommodations.
+- **Question 7**: Using a shared expense tracker.
+- **Question 8**: I try to estimate costs and keep some margin for unexpected expenses.
+- **Question 9**: I avoid expensive activities and look for free or low-cost alternatives.
+- **Question 10**: No.
+- **Question 11**: Yes, if it helps with organizing finances.
+- **Question 12**: Plan the itinerary in detail.
+- **Question 13**: Include suggestions for budget-friendly activities.
+
+Interview 17
+- **Question 1**: Yes, last summer with friends.
+- **Question 2**: Finding a time that suits everyone.
+- **Question 3**: Adjusting plans to fit everyone’s preferences.
+- **Question 4**: Sometimes, especially before the trip.
+- **Question 5**: Yes, we split costs evenly.
+- **Question 6**: During the trip, particularly for activities.
+- **Question 7**: Using a budgeting app.
+- **Question 8**: I set a total budget and try to allocate it wisely.
+- **Question 9**: I look for discounts and deals on accommodation and activities.
+- **Question 10**: No.
+- **Question 11**: Yes, it would be helpful.
+- **Question 12**: Organize everything in advance.
+- **Question 13**: Provide a way to track expenses easily.
+
+Interview 18
+- **Question 1**: Yes, with friends, once a year.
+- **Question 2**: Arranging travel and accommodation.
+- **Question 3**: Deciding on activities and restaurants.
+- **Question 4**: No, but adjustments are often needed.
+- **Question 5**: Yes, we usually share costs for meals and activities.
+- **Question 6**: During the trip, for various activities.
+- **Question 7**: Using an app to keep track of expenses.
+- **Question 8**: I plan a budget and try to save where possible.
+- **Question 9**: Look for cheaper food options and discounts.
+- **Question 10**: No.
+- **Question 11**: Yes, especially for splitting costs.
+- **Question 12**: Plan the itinerary and book in advance.
+- **Question 13**: Suggest cost-saving tips.
+
+Interview 19
+- **Question 1**: Yes, summer 2023 with 3 friends.
+- **Question 2**: Deciding on travel dates.
+- **Question 3**: I ran out of money, so we skipped some activities.
+- **Question 4**: Yes.
+- **Question 5**: Each pays for themselves.
+- **Question 6**: Yes, we manage shared costs carefully.
+- **Question 7**: Tracking expenses together.
+- **Question 8**: None, I do quick calculations and usually spend all the money.
+- **Question 9**: On food, I avoid restaurants and go to supermarkets to save.
+- **Question 10**: Apps only for booking flights, not for managing travel.
+- **Question 11**: Not much, I prefer managing money directly with others.
+- **Question 12**: Plan the trip well.
+- **Question 13**: No.
+
+CHATGPT INTERVIEW:
+Request:
+hi, I'm building an app called 'SaveNTravel' which aims to help groups of people to financially organize their trips. We were thinking about an app that will give you the opportunity to set the different budgets for different categories such as flight, accommodation, food, visits, museums, nightlife etc, that will give you the chance to change it during the trip and that will also give you the chance to set an error percentage on these budgets. The app will also have a section for the common expenses, where the app will calculate how much money a person owes to another etc. We would like to understand if what we have thought could be helpful and if there is something we are missing and that we should add. So we are interviewing people. Could you answer our interview, basing your answer on a person that could actually use an app like this. So could you first describe the kind of person you would be by answering our interview and give us possible answers, please.
+Answer:
+Yes, I've been on several trips, mostly with friends or family. I've traveled to various destinations, both domestically and internationally, over the past few years.
+One of the most challenging aspects is aligning everyone's schedules and preferences. It can be tricky to find a destination that appeals to everyone and to coordinate flights, accommodations, and activities that suit everyone's budgets and interests.
+Certainly, there have been instances where I've had to compromise on my preferred activities or destinations to ensure everyone in the group was satisfied. For example, choosing a restaurant that caters to different dietary preferences or opting for a less expensive accommodation option to accommodate everyone's budget.
+Yes, managing the budget can be challenging, especially when traveling with friends who may have different spending habits or financial constraints. It's essential to establish clear communication and expectations regarding expenses from the outset.
+Yes, we often split expenses like meals, transportation, and accommodations. We usually use a combination of cash and mobile payment apps to settle shared expenses.
+It varies depending on the situation, but we try to settle shared expenses as soon as possible to avoid any confusion or misunderstandings. Typically, it's within a day or two.
+I prefer to keep track of expenses during the trip, using either a dedicated app or a spreadsheet. It helps me stay within budget and ensures I'm aware of how much I'm spending in real-time.
+I start by estimating the total cost of the trip, including flights, accommodations, food, activities, and incidentals. Then, I allocate a specific budget for each category and try to stick to it by monitoring my expenses closely throughout the trip.
+ I look for deals on flights and accommodations, opt for public transportation instead of taxis, and try to eat at local eateries rather than touristy restaurants. I also prioritize free or low-cost activities and attractions.
+Yes, I've used budgeting apps and expense trackers to manage my finances while traveling. They've been helpful in keeping me organized and ensuring I stay within budget.
+Yes, I would be interested in such a feature, especially if it simplifies the process of splitting expenses with friends. However, I would want to ensure that the app has robust security measures in place to protect my payment information.
+Communication is key when traveling with a group. It's essential to discuss expectations, budgets, and preferences upfront to avoid misunderstandings and conflicts during the trip.
+One suggestion would be to incorporate features that allow users to set and track shared expenses easily. Additionally, providing real-time updates on spending and customizable budget categories would be beneficial for users looking to manage their finances effectively while traveling with others.
+ 
+GEMINI INTERVIEW:
+Request:
+hi, I'm building an app called 'SaveNTravel' which aims to help groups of people to organise their trips financially. We were thinking about an app that will give you the opportunity to set the different budgets for different categories such as flight, accomodation, food, visits, museums, nightlife etc, that will give you the chance to change it during the trip and that will also give you the chance to set an error percentage on these budgets. The app will also have a section for the common expenses, where the app will calculate how much money a person owes to another etc. We would like to understand if what we have thought could be helpful and if there is something we are missing and that we should add. So we are interviewing people. Could you answer our interview, basing your answer on a person that could actually use an app like this. So could you first describe the kind of person you would be by answering our interview and give us possible answers, please.
+Answer:
+Interview with a Potential User of SaveNTravel
+Yes, I travel frequently with friends. In fact, I just got back from a backpacking trip through Southeast Asia with two college buddies last month (April 2024).
+The most challenging aspects are definitely:
+Finding a destination and dates that work for everyone's budget and schedule.
+Agreeing on accommodation that meets everyone's needs (luxury vs. budget-friendly).
+Balancing activities that everyone wants to do, especially when interests differ.
+On the recent Southeast Asia trip, I really wanted to spend a few days exploring off-the-beaten-path islands, but my friends preferred the more touristy beaches. We ended up splitting our time between both to find a happy medium.
+Yes, it can be tricky. Often people have different spending habits, and it's easy to lose track of shared expenses, especially for smaller things like meals and transportation.
+Absolutely. We usually try to pay for things individually when possible, but for group meals, taxis, or entrance fees, one person pays upfront and then we settle up later. This can be messy, with someone constantly having to calculate who owes what.
+It can be awkward! Sometimes it takes weeks to settle everything, especially if someone forgets or there are disagreements about amounts.
+I try to keep a loose track of expenses during the trip, but a more detailed accounting usually happens after I return home, which can be time-consuming and frustrating.
+I research average costs for flights, accommodation, and activities in advance. Then, I factor in a buffer for unexpected expenses.  Unfortunately, sticking to the budget isn't always perfect, especially with group activities.
+I look for budget-friendly accommodation options like hostels or guesthouses.
+I try to cook some meals at our accommodation to avoid expensive restaurant bills every day.
+When it comes to activities, I prioritize free attractions and walking tours over expensive excursions.
+I've tried a couple of budgeting apps, but none were specifically designed for group trips. They were okay for personal budgeting, but not helpful for managing shared expenses or group activities.
+Yes, that would be a very useful feature!  Sharing payment information would depend on the app's security measures. If it has a strong reputation and secure transactions, I would be comfortable using it.
+Clear communication from the beginning is key! Discussing budgets, expectations, and desired activities openly helps avoid conflicts later.
+Having a flexible itinerary allows room for compromise and spontaneous adventures.
+Keeping track of shared expenses meticulously throughout the trip is crucial to avoid post-trip headaches.
+
+
+- The ability to set individual and group budgets would be fantastic.
+- An expense tracker that allows splitting costs with friends directly in the app would be a huge timesaver.
+- Real-time updates on how much each person has spent compared to the budget would promote responsible spending within the group.
+- Integration with popular money transfer services would be ideal for easy settling of shared expenses.
+I believe SaveNTravel sounds like a great app idea, and with the features you've mentioned, it could be a game-changer for group travel planning and budgeting. 
+
+
+
