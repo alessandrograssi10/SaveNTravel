@@ -1,5 +1,11 @@
 # 💰👫SaveNTravel💰👫
- 🤖👨Human Computer Interaction Project🤖👨 , In which our team is developing a Fintech app to manage the financial aspects of group travel with friends
+ 🤖👨Human Computer Interaction Project🤖👨 
 
+Our team has developed an innovative fintech app designed to streamline the financial management of group travel with friends. The project involved several key phases:
 
-For the interview question and answers; questionnare structure, links and summary; storyboard and prototype please visit: https://drive.google.com/drive/folders/1J9qfL53qjfPSrxjbEc-LpxrUB91i5C_S?usp=sharing
+1. **Storyboarding:** We mapped out user journeys and interactions to ensure a smooth and intuitive experience.
+2. **Interviews:** We conducted interviews to gather insights and understand user needs and pain points.
+3. **Prototyping:** We created interactive prototypes to visualize and test our design concepts.
+4. **Development:** We implemented the final app using Swift on Xcode, focusing on creating a robust and user-friendly solution for tracking and managing shared expenses during group trips.
+
+Our app aims to simplify financial settlement and enhance the travel experience by making group budgeting and expense tracking effortless.
